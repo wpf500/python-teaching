@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Learning Python</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.16.0/codemirror.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.16.0/theme/neat.min.css" />
+    <style>
+        body {
+            color: #333;
+            font-family: helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            position: relative;
+            height: 100vh;
+            color: white;
+            background-image: url(header.png);
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 20px;
+        }
+        h1 {
+            position: absolute;
+            left: 5%;
+            bottom: 10%;
+            font-size: 120px;
+            line-height: 1;
+            margin: 0;
+        }
+        textarea {
+            width: 100%;
+        }
+        pre {
+            margin: 5px 0 0;
+            white-space: pre-wrap;
+            background-color: #333;
+            color: #67f967;
+            padding: 5px;
+        }
+        code {
+            font-weight: bold;
+        }
+        em {
+            color: #000fff;
+            font-style: normal;
+            font-weight: bold;
+        }
+        hr {
+            margin: 40px 0;
+        }
+        section {
+            position: relative;
+        }
+        .hint {
+            position: absolute;
+            left: 100%;
+            margin: 0 0 0 20px;
+            width: 200px;
+            background-color: #FFFAE9;
+            padding: 5px;
+        }
+        .hint::before {
+            content: "Hint:";
+            display: block;
+            font-style: italic;
+        }
+        .container {
+            margin: 0 auto;
+            max-width: 700px;
+        }
+
+        .editor {
+            background-color: #dfdfdf;
+            padding: 5px;
+        }
+        .CodeMirror {
+            border: 1px solid #767676;
+            height: auto;
+        }
+        .run {
+            margin-top: 5px;
+        }
+        .output {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Learning Python</h1>
+    </header>
+    <main class="container">
+        <section>
+            <p>
+                You've been tasked with making a program which introduces people to the
+                CIJ Summer Conference. Your program needs to tell people the following:
+            </p>
+            <ul>
+                <li>The conference name</li>
+                <li>That it lasts 3 days</li>
+                <li>That there are 5 rooms in use</li>
+                <li>That each room is used 10 times per day</li>
+                <li>The total number of sessions (3 &times; 5 &times; 10 = 150)</li>
+            </ul>
+            <p>
+                <em>We've made a start for you, add the rest.</em>
+            </p>
+            <p class="hint">
+                <code>print</code> tells Python to display something on the screen
+            </p>
+            <div class="editor">
+                <textarea>
+print "Welcome to CIJ Summer"
+print "CIJ Summer lasts for 3 days"
+print "Sessions at CIJ Summer will take place in 5 rooms"
+</textarea>
+            </div>
+            <p>
+                Now you've been asked to do the same for PyCon. It lasts 4 days, has 9
+                rooms and each room is used 10 times per day. <em>Update the program above
+                to reflect the new conference.</em>
+            </p>
+            <hr />
+        </section>
+        <section>
+            <h2>Variables</h2>
+            <p>
+                Hopefully you found that really tedious. You will have had to change "CIJ Summer"
+                to "PyCon" at least three times. If only there was a way of only having to update
+                the conference name once.
+            </p>
+            <p>
+                THERE IS!!!! You can use variables to store a value which you can use again later.
+                Below, on line 1, we are declaring a variable where the name is conference and the
+                value is "CIJ Summer".
+            </p>
+            <p>
+                <em>Run this example.</em>
+            </p>
+            <div class="editor">
+                <textarea>
+conference = "CIJ Summer"
+
+print "Welcome to " + conference
+print conference + " lasts for 3 days"
+print "Sessions at " + conference + " will take place in 5 rooms"
+</textarea>
+            </div>
+            <p>
+                Now go ahead and change "CIJ Summer" to "PyCon", <em>what happens?</em>
+            </p>
+
+            <hr />
+
+            <p>
+                What else can we improve? You probably had to work out the total number of
+                sessions at PyCon in your head and no one wants to do that. You might also have
+                heard that computers can do maths.
+            </p>
+
+            <p>
+                Notice that the number isn't in quotation marks
+            </p>
+
+            <div class="editor">
+                <textarea>
+name = "CIJ Summer"
+
+number_of_days = 3
+number_of_rooms = ???
+room_sessions_per_day = ???
+
+total_sessions = number_of_days * number_of_rooms * room_sessions_per_day
+
+print "Welcome to " + name
+print name + " lasts for " + number_of_days + " days"
+print "Sessions at " + name + " will take place in " + number_of_rooms + " rooms"
+print "There are " + total_sessions + "sessions in total"
+</textarea>
+            </div>
+        </section>
+
+        <section>
+            <h2>Functions</h2>
+            <div class="editor">
+                <textarea>
+</textarea>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reqwest/2.0.5/reqwest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.16.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.16.0/mode/python/python.min.js"></script>
+    <script>
+        function $$(s) {
+            return [].slice.apply(document.querySelectorAll(s));
+        }
+
+        function run(code) {
+            return reqwest({
+                'method': 'POST',
+                'url': '/run',
+                'contentType': 'text/plain',
+                'data': code
+            });
+        }
+
+        $$('.editor').forEach(function (editorEl) {
+            var textareaEl = editorEl.querySelector('textarea');
+            var codeMirror = CodeMirror.fromTextArea(textareaEl, {
+                'mode': 'python',
+                'theme': 'neat',
+                'lineNumbers': true,
+                'readOnly': false
+            });
+
+            var buttonEl = document.createElement('button');
+            buttonEl.textContent = 'Run'
+            buttonEl.className = 'run';
+
+            var outputEl = document.createElement('pre');
+            outputEl.className = 'output';
+
+            buttonEl.addEventListener('click', function () {
+                run(codeMirror.getValue()).then(function (output) {
+                    outputEl.textContent = output;
+                    outputEl.style.display = 'block';
+                });
+            });
+
+            editorEl.appendChild(buttonEl);
+            editorEl.appendChild(outputEl);
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+1) Variables, functions (parameters, outputs)
+
+basic variables
+n = 2
+name = 'blah'
+print 'Hello' + name
+
+1.5) Testing conditions
+get_field(row, field)
+
+can we find out more information about this row?
+control statements -> if statements
+e.g. was strike in Raqqa?
+l1 = get_row_location(row)
+l2 = get_city_location('Raqqa')
+etc.
+
+1.6) Create function wrap above steps
+
+2) What about testing all rows?
+First: lists
+rows = get_rows()
+rows[0], lists are 0 indexed
+
+for loops
+
+3) What can you do in Excel?
+Count all occurrences of one, maybe two combinations?
+How about all possible combinations?
+
+basic aggregation: initialise count to 0, increment on condition == True
+
+4) advanced aggregation
+4.1) a dictionary? places[place] += 1, group by place effectively
+
+4.2) how about two lists,
+4.3) how about a dictionary of lists

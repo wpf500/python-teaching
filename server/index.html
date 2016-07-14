@@ -41,13 +41,6 @@
             width: 100%;
         }
 
-        pre {
-            margin: 10px 0 0;
-            white-space: pre-wrap;
-            background-color: #333;
-            color: #67f967;
-            padding: 5px;
-        }
         code {
             font-weight: bold;
             font-size: 14px;
@@ -58,8 +51,8 @@
             font-weight: bold;
         }
         section {
-            margin: 40px 0;
-            border-top: 1px solid black;
+            margin: 80px 0;
+            display: none;
         }
 
         .wrapper {
@@ -111,6 +104,22 @@
         }
         .output {
             display: none;
+            margin: 10px 0 0;
+            white-space: pre-wrap;
+            background-color: #333;
+            color: #67f967;
+            padding: 5px;
+        }
+        .next {
+            display: none;
+            border: 0;
+            width: 200px;
+            height: 75px;
+            font-size: 50px;
+            margin: -40px 0 80px;
+            background: blue;
+            color: white;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -133,7 +142,7 @@
                 <li>The total number of sessions (3 &times; 5 &times; 10 = 150)</li>
             </ul>
             <p>
-                <em>We've made a start for you, add the rest.</em>
+                <em>We've made a start for you, finish off the rest.</em>
             </p>
         </div>
         <div class="editor">
@@ -151,16 +160,19 @@ print "There are 5 rooms in use"
         <div class="wrapper">
             <p>
                 Nice one, everyone's raving about your CIJ Summer explainer. So
-                much so that PyCon wants the same thing. Their requirements are
-                the same, but the format of the conference is as following:
+                much so that PyCon wants the same thing. The format of the
+                conference is different, you now need to tell people the
+                following:
             </p>
             <ul>
-                <li>It lasts 4 days</li>
-                <li>There are 9 rooms in use</li>
-                <li>Each room is used 10 times per day</li>
+                <li>The conference name</li>
+                <li>That it lasts 4 days</li>
+                <li>That there are 9 rooms in use</li>
+                <li>That each room is used 10 times per day</li>
+                <li>The total number of sessions</li>
             </ul>
             <p>
-                <em>Update the program for PyCon.</em>
+                <em>Update the program in the box above to reflect PyCon.</em>
             </p>
             <p>
                 Hopefully you found that really tedious. In the next section
@@ -168,6 +180,11 @@ print "There are 5 rooms in use"
             </p>
         </div>
     </section>
+
+    <div class="wrapper">
+        <button class="next">Next</button>
+    </div>
+
     <section>
         <div class="wrapper">
             <h2>Using variables</h2>
@@ -188,7 +205,7 @@ print "There are 5 rooms in use"
         <div class="editor">
             <div class="wrapper">
                 <p class="hint">
-                    Variables are used to store information which can then
+                    <b>Variables</b> are used to store information which can then
                     later be used in your program
                 </p>
                 <textarea>
@@ -241,8 +258,14 @@ print "There are " + total_sessions + " sessions in total"
             </div>
         </div>
     </section>
+
+    <div class="wrapper">
+        <button class="next">Next</button>
+    </div>
+
     <section>
         <div class="wrapper">
+            <h2>Variable types</h2>
             <p>
                 <em>Fill in the ???, this time using integers instead of
                 strings.</em>
@@ -302,8 +325,11 @@ print "There are " + total_sessions + " sessions in total"
                 few variables.
             </p>
         </div>
-        
     </section>
+
+    <div class="wrapper">
+        <button class="next">Next</button>
+    </div>
 
     <section>
         <div class="wrapper">
@@ -313,7 +339,6 @@ print "There are " + total_sessions + " sessions in total"
                 Johnson, inexplicably the Foreign Secretary, has announced that
                 <i>"event explainer programs can only be sold abroad if they
                 display a warning for events with more than 300 sessions"</i>.
-                Weird requirement, but then he is known for saying odd things.
             </p>
             <p>
                 You probably do want access to the foreign event market, so
@@ -390,10 +415,15 @@ if ???:
         </div>
         <div class="wrapper">
             <p>
-                How would you add a message for all conferences <u>except</u> PyCon?
+                Food for thought: how would you add a message for all
+                conferences <u>except</u> PyCon?
             </p>
         </div>
     </section>
+
+    <div class="wrapper">
+        <button class="next">Next</button>
+    </div>
 
     <section>
         <div class="wrapper">
@@ -427,65 +457,178 @@ else:
             <p>
                 Now add back the warning about conferences with over 300
                 sessions, but also <em>show a different message if the
-                conference has 300 sessions or less.</em>
+                conference has 300 sessions or fewer.</em>
             </p>
         </div>
     </section>
 
+    <div class="wrapper">
+        <button class="next">Next</button>
+    </div>
+
     <section>
         <div class="wrapper">
             <h2>Functions</h2>
-            <p>What are functions?</p>
+            <p>
+                An hour ago, you thought Python was a snake. Now, you've built
+                a beautiful event explainer program. You deserve some credit,
+                you should tell people about your achievements.  To be doubly
+                sure that people are aware of the gravity of what you've done,
+                you should probably tell them twice.
+            </p>
+            <p>
+                <em>Change the name/organisation below and run the code.</em>
+            </p>
         </div>
         <div class="editor">
             <div class="wrapper">
                 <textarea>
-def blah():
-    print "something"
-    print "something"
+print "Welcome to CIJ Summer"
 
-blah()
-blah()
+print "This program was built by:"
+print "Will Franklin"
+print "The Guardian"
+
+print "The rest of your explainer here..."
+
+print "This program was built by:"
+print "Will Franklin"
+print "The Guardian"
 </textarea>
             </div>
         </div>
-    </section>
-
-    <section>
         <div class="wrapper">
-            <p>Functions can have inputs</p>
+            <p>
+                Even if you moved your name and organisation into variables, that's
+                still a lot of typing. If only there was a way of only having to type
+                out your credit once, then displaying it repeatedly.
+            </p>
+            <p>
+                THERE IS!!! The function <code>credit()</code> below runs both
+                <code>print</code> statements when you run it. <em>Run the code
+                below, do you understand why the output appears in that
+                order?</em>
+            </p>
         </div>
         <div class="editor">
             <div class="wrapper">
+                <p class="hint">
+                    <b>Functions</b> allow you to group together code and reduce
+                    repetition in your program
+                </p>
                 <textarea>
-def hello(name):
-    print "Hello " + name
-    print "Goodbye " + name
+def credit():
+    print "This program was built by:"
+    print "Will Franklin"
+    print "The Guardian"
 
-hello("Will")
-hello("Someone")
+print "Welcome to CIJ Summer"
+
+credit()
+
+print "The rest of your explainer here..."
+
+credit()
 </textarea>
             </div>
         </div>
+        <div class="wrapper">
+            <p>
+                We should probably give Boris Johnson credit for that
+                ridiculous requirement he introduced earlier because, although
+                stupid, it did give us something to do. Also I doubt he's going
+                to do anything worthy of credit now he's (still inexplicably)
+                Foreign Secretary.
+            </p>
+            <p>
+                Add another function with the name <code>credit_boris()</code>
+                that credits Boris, <em>then run the program.</em>
+            </p>
+        </div>
     </section>
+
+    <div class="wrapper">
+        <button class="next">Next</button>
+    </div>
 
     <section>
         <div class="wrapper">
-            <p>Functions can also have outputs</p>
+            <h2>Functions with inputs</h2>
+            <p>
+                Hopefully you're beginning to sense that if you are doing
+                something repetitive on a computer, there is probably a better
+                way.
+            </p>
+            <p>
+                Here we have a function which takes two inputs, a
+                <code>name</code> and <code>organisation</code>, and displays
+                them on the screen. <em>Run this example.</em>
+            </p>
         </div>
         <div class="editor">
             <div class="wrapper">
+                <p class="hint">
+                    Functions can take <b>input parameters</b>, which you give
+                    a value to when you use the function
+                </p>
                 <textarea>
-def concat(string1, string2):
-    result = string1 + string2
-    return result
+def credit(name, organisation):
+    print "This program was built by:"
+    print name
+    print organisation
+
+print "Welcome to CIJ Summer"
+
+credit("Will Franklin", "The Guardian")
+credit("Boris Johnson", "Foreign Secretary")
+
+print "The rest of your explainer here..."
+
+credit("Boris Johnson", "Foreign Secretary")
+credit("Will Franklin", "The Guardian")
+</textarea>
+            </div>
+        </div>
+        <div class="wrapper">
+            <p>
+                Sorry I made you credit Boris, he definitely doesn't deserve it.
+                Using the <code>credit()</code> function, <em>Add a credit for
+                someone else who you think actually deserves it.</em>
+            </p>
+        </div>
+    </section>
+
+    <div class="wrapper">
+        <button class="next">Next</button>
+    </div>
+
+    <section>
+        <div class="wrapper">
+            <h2>Functions with outputs</h2>
+            <p>
+                
+            </p>
+        </div>
+        <div class="editor">
+            <div class="wrapper">
+                <p class="hint">
+                    <code>return</code> tells Python to output
+                    a value from the function
+                </p>
+                <textarea>
+def get_conference_message(sessions):
+    if sessions > 300:
+        return "This conference is large"
+    else:
+        return "This conference is small"
 
 conference = "CIJ Summer"
-welcome_message = concat("Welcome to ", conference)
-print welcome_message
+total_sessions = 150
 
-hashtag_message = concat(conference, " hashtag is #CIJSummer")
-print hashtag_message
+print "Welcome to " + conference
+
+message = get_conference_message(total_sessions)
+print message
 </textarea>
             </div>
         </div>
@@ -529,6 +672,28 @@ print hashtag_message
 
             editorEl.appendChild(buttonEl);
             editorEl.appendChild(outputEl);
+        });
+
+        var sectionEls = $$('section');
+        var buttonEls = $$('.next');
+
+        var  sectionNo = 0;
+        function next() {
+            if (sectionNo > 0) {
+                buttonEls[sectionNo - 1].style.display = 'none';
+            }
+            if (sectionNo < buttonEls.length) {
+                buttonEls[sectionNo].style.display = 'block';
+            }
+            sectionEls[sectionNo].style.display = 'block';
+            $$('.CodeMirror').forEach(el => el.CodeMirror.refresh());
+            sectionNo++;
+        }
+        next();
+        //for (var i = 0; i < 7; i++) next();
+
+        $$('.next').forEach(function (nextEl) {
+            nextEl.addEventListener('click', next);
         });
 
     </script>

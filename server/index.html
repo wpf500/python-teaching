@@ -4,10 +4,19 @@
     <title>Learning Python</title>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.16.0/codemirror.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.16.0/theme/neat.min.css" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reqwest/2.0.5/reqwest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.16.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.16.0/mode/python/python.min.js"></script>
+
     <style>
+        html {
+            overflow-x: hidden;
+        }
         body {
             color: #333;
             font-family: helvetica, sans-serif;
+            line-height: 1.3;
             margin: 0;
             padding: 0;
         }
@@ -31,8 +40,9 @@
         textarea {
             width: 100%;
         }
+
         pre {
-            margin: 5px 0 0;
+            margin: 10px 0 0;
             white-space: pre-wrap;
             background-color: #333;
             color: #67f967;
@@ -40,17 +50,32 @@
         }
         code {
             font-weight: bold;
+            font-size: 14px;
         }
         em {
-            color: #000fff;
+            color: red;
             font-style: normal;
             font-weight: bold;
         }
-        hr {
-            margin: 40px 0;
-        }
         section {
+            margin: 40px 0;
+            border-top: 1px solid black;
+        }
+
+        .wrapper {
             position: relative;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .container {
+            margin: 0 auto;
+            max-width: 700px;
+        }
+
+        .editor {
+            background-color: #eee;
+            padding: 20px;
         }
         .hint {
             position: absolute;
@@ -65,21 +90,24 @@
             display: block;
             font-style: italic;
         }
-        .container {
-            margin: 0 auto;
-            max-width: 700px;
-        }
-
-        .editor {
-            background-color: #dfdfdf;
-            padding: 5px;
-        }
         .CodeMirror {
             border: 1px solid #767676;
             height: auto;
         }
         .run {
-            margin-top: 5px;
+            display: block;
+            cursor: pointer;
+            margin: 10px 0 0 auto;
+            padding: 8px 20px;
+            border: 0;
+            outline: 0;
+            background: red;
+            font-weight: bold;
+            font-size: 16px;
+            color: white;
+        }
+        .run:hover {
+            background: #c10000;
         }
         .output {
             display: none;
@@ -90,11 +118,12 @@
     <header>
         <h1>Learning Python</h1>
     </header>
-    <main class="container">
-        <section>
+    <section>
+        <div class="wrapper">
             <p>
-                You've been tasked with making a program which introduces people to the
-                CIJ Summer Conference. Your program needs to tell people the following:
+                You've been tasked with making a program which explains what
+                happens at the CIJ Summer Conference. Your program needs to
+                tell people the following:
             </p>
             <ul>
                 <li>The conference name</li>
@@ -106,93 +135,361 @@
             <p>
                 <em>We've made a start for you, add the rest.</em>
             </p>
-            <p class="hint">
-                <code>print</code> tells Python to display something on the screen
-            </p>
-            <div class="editor">
+        </div>
+        <div class="editor">
+            <div class="wrapper">
+                <p class="hint">
+                    <code>print</code> tells Python to display something on the screen
+                </p>
                 <textarea>
 print "Welcome to CIJ Summer"
 print "CIJ Summer lasts for 3 days"
-print "Sessions at CIJ Summer will take place in 5 rooms"
+print "There are 5 rooms in use"
 </textarea>
             </div>
+        </div>
+        <div class="wrapper">
             <p>
-                Now you've been asked to do the same for PyCon. It lasts 4 days, has 9
-                rooms and each room is used 10 times per day. <em>Update the program above
-                to reflect the new conference.</em>
+                Nice one, everyone's raving about your CIJ Summer explainer. So
+                much so that PyCon wants the same thing. Their requirements are
+                the same, but the format of the conference is as following:
             </p>
-            <hr />
-        </section>
-        <section>
-            <h2>Variables</h2>
+            <ul>
+                <li>It lasts 4 days</li>
+                <li>There are 9 rooms in use</li>
+                <li>Each room is used 10 times per day</li>
+            </ul>
             <p>
-                Hopefully you found that really tedious. You will have had to change "CIJ Summer"
-                to "PyCon" at least three times. If only there was a way of only having to update
-                the conference name once.
+                <em>Update the program for PyCon.</em>
             </p>
             <p>
-                THERE IS!!!! You can use variables to store a value which you can use again later.
-                Below, on line 1, we are declaring a variable where the name is conference and the
-                value is "CIJ Summer".
+                Hopefully you found that really tedious. In the next section
+                we'll learn how to use variables to improve your program.
+            </p>
+        </div>
+    </section>
+    <section>
+        <div class="wrapper">
+            <h2>Using variables</h2>
+            <p>
+                In the last exercise you had to change "CIJ Summer" to "PyCon"
+                in at least two places. If only there was a way of only having
+                to update the conference name once.
+            </p>
+            <p>
+                THERE IS!!!! You can store the name of a conference in a
+                variable.  Below, on line 1, we are declaring a variable where
+                the name is <code>conference</code> and the value is "CIJ Summer".
             </p>
             <p>
                 <em>Run this example.</em>
             </p>
-            <div class="editor">
+        </div>
+        <div class="editor">
+            <div class="wrapper">
+                <p class="hint">
+                    Variables are used to store information which can then
+                    later be used in your program
+                </p>
                 <textarea>
 conference = "CIJ Summer"
 
 print "Welcome to " + conference
 print conference + " lasts for 3 days"
-print "Sessions at " + conference + " will take place in 5 rooms"
+print "There are 5 rooms in use"
 </textarea>
             </div>
+        </div>
+        <div class="wrapper">
             <p>
-                Now go ahead and change "CIJ Summer" to "PyCon", <em>what happens?</em>
+                Now go ahead and change the value of <code>conference</code>
+                from "CIJ Summer" to "PyCon", <em>what happens?</em>
             </p>
-
-            <hr />
-
+        </div>
+        <div class="wrapper">
             <p>
-                What else can we improve? You probably had to work out the total number of
-                sessions at PyCon in your head and no one wants to do that. You might also have
-                heard that computers can do maths.
+                In the first exercise, you probably also had to work out the
+                total number of sessions at PyCon in your head and no one wants
+                to do that. You might also have heard that computers can do
+                maths.
             </p>
-
             <p>
-                Notice that the number isn't in quotation marks
+                You should store the number of days, rooms and sessions per
+                rooms in variables and get Python to calculate the total number
+                of sessions.  <em>Replace the ??? with the information for CIJ
+                Summer and run the program</em>
             </p>
-
-            <div class="editor">
+        </div>
+        <div class="editor">
+            <div class="wrapper">
+                <p class="hint">
+                    In Python, the asterisk (<code>*</code>) means multiply
+                </p>
                 <textarea>
-name = "CIJ Summer"
+conference = "CIJ Summer"
+number_of_days = "3"
+number_of_rooms = ???
+room_sessions_per_day = ???
 
+print "Welcome to " + conference
+print conference + " lasts for " + number_of_days + " days"
+print "There are " + number_of_rooms + " rooms in use"
+
+total_sessions = number_of_days * number_of_rooms * room_sessions_per_day
+print "There are " + total_sessions + " sessions in total"
+</textarea>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="wrapper">
+            <p>
+                <em>Fill in the ???, this time using integers instead of
+                strings.</em>
+            </p>
+        </div>
+        <div class="editor">
+            <div class="wrapper">
+                <textarea>
 number_of_days = 3
 number_of_rooms = ???
 room_sessions_per_day = ???
 
 total_sessions = number_of_days * number_of_rooms * room_sessions_per_day
+print total_sessions
+</textarea>
+            </div>
+        </div>
+        <div class="wrapper">
+            <p>
+                Congratulations, you've made a calculator. If you haven't used
+                a calculator before, think of this as the last day you'll ever
+                have to do basic arithmetic manually.
+            </p>
+            <p>
+                Bringing everything back together for your conference explainer,
+                <em>complete the code below.</em> The hint will hopefully help
+                you figure out how to make this program work.
+            </p>
+        </div>
+        <div class="editor">
+            <div class="wrapper">
+                <p class="hint">
+                    <code>str(x)</code> converts the variable <code>x</code>
+                    from an integer to a string
+                </p>
+                <textarea>
+conference = "CIJ Summer"
+
+number_of_days = 3
+number_of_rooms = 5
+room_sessions_per_day = 10
+
+print "Welcome to " + conference
+print conference + " lasts for " + str(number_of_days) + " days"
+print "There are " + number_of_rooms + " rooms in use"
+
+total_sessions = number_of_days * number_of_rooms * room_sessions_per_day
+print "There are " + total_sessions + " sessions in total"
+</textarea>
+            </div>
+        </div>
+        <div class="wrapper">
+            <p>
+                Now you can change the variables to reflect PyCon, or any other
+                event you can think of, and sell it to everyone for ludicrous
+                sums of money. They don't need to know that you just altered a
+                few variables.
+            </p>
+        </div>
+        
+    </section>
+
+    <section>
+        <div class="wrapper">
+            <h2>If statements</h2>
+            <p>
+                There's a new requirement for your conference explainer. Boris
+                Johnson, inexplicably the Foreign Secretary, has announced that
+                <i>"event explainer programs can only be sold abroad if they
+                display a warning for events with more than 300 sessions"</i>.
+                Weird requirement, but then he is known for saying odd things.
+            </p>
+            <p>
+                You probably do want access to the foreign event market, so
+                you'll have to add the warning. <em>Run the code below.</em>
+            </p>
+        </div>
+        <div class="editor">
+            <div class="wrapper">
+                <p class="hint">
+                    <code>if</code> statements allow you to only run a piece
+                    of code if certain conditions are met
+                </p>
+                <textarea>
+conference = "CIJ Summer"
+total_sessions = 150
 
 print "Welcome to " + name
-print name + " lasts for " + number_of_days + " days"
-print "Sessions at " + name + " will take place in " + number_of_rooms + " rooms"
-print "There are " + total_sessions + "sessions in total"
+if total_sessions > 300:
+    print "This conference is really big, be careful"
 </textarea>
             </div>
-        </section>
-
-        <section>
-            <h2>Functions</h2>
-            <div class="editor">
+        </div>
+        <div class="wrapper">
+            <p>
+                Now change the value of <code>total_sessions</code> from 150 to
+                360, <em>what happens?</em>
+            </p>
+            <p>
+                Argh another requirement, welcome to the life of a software
+                developer.  PyCon wants to add an extra message to their
+                explainer.  They've run out of organic wild Kopi Luwak coffee
+                beans and are going to have to serve instant coffee, the
+                hipsters won't be happy.
+            </p>
+            <p>
+                <em>Complete the code below.</em> Check that the message only
+                appears if the value of <code>conference</code> is "PyCon".
+            </p>
+        </div>
+        <div class="editor">
+            <div class="wrapper">
+                <p class="hint">
+                    You can use the equality operator, <code>==</code> (double equals),
+                    to compare two values
+                </p>
                 <textarea>
+conference = "PyCon"
+
+if ???:
+    print "Unfortunately, we've run out of organic coffee beans"
 </textarea>
             </div>
-        </section>
-    </main>
+        </div>
+        <div class="wrapper">
+            <p>
+                A rival conference, PiKon, hears about PyCon's predicament and
+                decides to use it to attract budding Python developers.  If the
+                conference name is "PiKon", <em>add a message</em> which
+                announces their plentiful supply of coffee (these requirements
+                are getting quite contrived aren't they?!).
+            </p>
+        </div>
+        <div class="editor">
+            <div class="wrapper">
+                <textarea>
+conference = "PiKon"
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/reqwest/2.0.5/reqwest.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.16.0/codemirror.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.16.0/mode/python/python.min.js"></script>
+if conference == "PyCon":
+    print "Unfortunately, we've run out of coffee beans"
+if ???:
+    print "We have plenty of coffee"
+</textarea>
+            </div>
+        </div>
+        <div class="wrapper">
+            <p>
+                How would you add a message for all conferences <u>except</u> PyCon?
+            </p>
+        </div>
+    </section>
+
+    <section>
+        <div class="wrapper">
+            <h2>Else clauses</h2>
+            <p>
+                Lets finish off these increasingly tedious requirements. The
+                code below will display a different message depending on whether
+                <code>conference</code> has a value of "PyCon" or not. <em>Run
+                the code, then modify it to make sure you see both messages
+                appearing.</em>
+            </p>
+        </div>
+        <div class="editor">
+            <div class="wrapper">
+                <p class="hint">
+                    <code>else</code> clauses are executed if the condition
+                    in the <code>if</code> statement is <u>not</u> true
+                </p>
+                <textarea>
+conference = "CIJ Summer"
+total_sessions = 150
+
+if conference = "PyCon":
+    print "Unfortunately, we've run out of coffee beans"
+else:
+    print conference + " has plenty of coffee"
+</textarea>
+            </div>
+        </div>
+        <div class="wrapper">
+            <p>
+                Now add back the warning about conferences with over 300
+                sessions, but also <em>show a different message if the
+                conference has 300 sessions or less.</em>
+            </p>
+        </div>
+    </section>
+
+    <section>
+        <div class="wrapper">
+            <h2>Functions</h2>
+            <p>What are functions?</p>
+        </div>
+        <div class="editor">
+            <div class="wrapper">
+                <textarea>
+def blah():
+    print "something"
+    print "something"
+
+blah()
+blah()
+</textarea>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="wrapper">
+            <p>Functions can have inputs</p>
+        </div>
+        <div class="editor">
+            <div class="wrapper">
+                <textarea>
+def hello(name):
+    print "Hello " + name
+    print "Goodbye " + name
+
+hello("Will")
+hello("Someone")
+</textarea>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="wrapper">
+            <p>Functions can also have outputs</p>
+        </div>
+        <div class="editor">
+            <div class="wrapper">
+                <textarea>
+def concat(string1, string2):
+    result = string1 + string2
+    return result
+
+conference = "CIJ Summer"
+welcome_message = concat("Welcome to ", conference)
+print welcome_message
+
+hashtag_message = concat(conference, " hashtag is #CIJSummer")
+print hashtag_message
+</textarea>
+            </div>
+        </div>
+    </section>
     <script>
         function $$(s) {
             return [].slice.apply(document.querySelectorAll(s));
@@ -207,7 +504,7 @@ print "There are " + total_sessions + "sessions in total"
             });
         }
 
-        $$('.editor').forEach(function (editorEl) {
+        $$('.editor .wrapper').forEach(function (editorEl) {
             var textareaEl = editorEl.querySelector('textarea');
             var codeMirror = CodeMirror.fromTextArea(textareaEl, {
                 'mode': 'python',
@@ -225,7 +522,7 @@ print "There are " + total_sessions + "sessions in total"
 
             buttonEl.addEventListener('click', function () {
                 run(codeMirror.getValue()).then(function (output) {
-                    outputEl.textContent = output;
+                    outputEl.textContent = output.responseText === undefined ? output : '\n';
                     outputEl.style.display = 'block';
                 });
             });
